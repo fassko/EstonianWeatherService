@@ -8,6 +8,5 @@ extension Droplet {
     get("observations") {
       try ObservationsController().listStations($0, droplet: self)
     }
-    
   }
 }

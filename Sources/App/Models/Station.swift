@@ -61,7 +61,7 @@ extension Station: JSONRepresentable {
       try json.set("wmocode", wmocode)
     }
     
-    if let phenomenon = phenomenon {
+    if let phenomenon = phenomenon, !phenomenon.isEmpty {
       try json.set("phenomenon", phenomenon)
     }
     
