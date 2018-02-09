@@ -146,6 +146,15 @@
         }
       },
       {
+        "package": "SWXMLHash",
+        "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
+        "state": {
+          "branch": null,
+          "revision": "30a13aa7ef6bb564a23399692531325117748c38",
+          "version": "4.4.1"
+        }
+      },
+      {
         "package": "Sockets",
         "repositoryURL": "https://github.com/vapor/sockets.git",
         "state": {

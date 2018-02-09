@@ -6,7 +6,7 @@ import HTTP
 extension Droplet {
   func setupRoutes() throws {
     get("observations") {
-      try ObservationsController().listStations($0)
+      try ObservationsController().listStations($0, droplet: self)
     }
     
   }
