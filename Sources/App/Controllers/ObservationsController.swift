@@ -14,16 +14,20 @@ final class ObservationsController {
   
   func listStations(_ req: Request, droplet: Droplet) throws -> ResponseRepresentable {
     
-    let r = URLRequest(url: URL(string: "http://www.ilmateenistus.ee/ilma_andmed/xml/observations.php")!)
+    let resp = try droplet.client.get("http://www.ilmateenistus.ee/ilma_andmed/xml/observations.php")
+    var json = JSON()
     
-    let (data, response) = try! URLSession.shared.data(with: r)
+    guard let body = resp.body.makeBody().bytes else { return json }
+    
+    let data = Data(bytes: body, count: body.count)
+    
     let xml = SWXMLHash.lazy(data)
-    
+
     let stations: [Station] = xml["observations"]["station"].all.map { elem -> Station in
       Station(name: (elem["name"].element?.text)!)
     }
     
-    var json = JSON()
+    
     try json.set("stations", stations)
     return json
   }
