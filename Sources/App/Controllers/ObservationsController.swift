@@ -23,7 +23,7 @@ final class ObservationsController {
     
     let xml = SWXMLHash.lazy(data)
 
-    let stations: [Station] = try xml["observations"]["station"].value()
+    let stations: [Station] = try xml["observations"]["station"].value().filter({ $0.airtemperature != nil })
     
     try json.set("stations", stations)
     return json
