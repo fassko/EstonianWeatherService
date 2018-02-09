@@ -23,10 +23,7 @@ final class ObservationsController {
     
     let xml = SWXMLHash.lazy(data)
 
-    let stations: [Station] = xml["observations"]["station"].all.map { elem -> Station in
-      Station(name: (elem["name"].element?.text)!)
-    }
-    
+    let stations: [Station] = try xml["observations"]["station"].value()
     
     try json.set("stations", stations)
     return json
